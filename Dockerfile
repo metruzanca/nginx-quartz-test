@@ -1,18 +1,20 @@
 # Start with the base Caddy image
-FROM caddy:builder AS builder
+FROM caddy:2.7.4 AS builder
 
 # Install necessary build tools
 RUN apk add --no-cache git go
 
+# Install xcaddy
+RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+
 # Set the Caddy version and plugins you want to include
-ENV CADDY_VERSION v2.7.4
 ENV PLUGINS "authp"
 
 # Fetch and build Caddy with the specified plugins
 RUN xcaddy build --with ${PLUGINS}
 
 # Create the final image using the Caddy built with plugins
-FROM caddy:latest
+FROM caddy:2.7.4
 
 # Copy the built Caddy binary from the builder stage
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
