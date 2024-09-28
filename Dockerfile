@@ -1,5 +1,6 @@
-FROM nginx:alpine
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY .htpasswd /etc/nginx/.htpasswd
-COPY www/ /usr/share/nginx/html/www/
-EXPOSE 80
+FROM caddy:alpine
+
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY www/ /usr/share/caddy/www/
+
+EXPOSE 80 443

@@ -1,5 +1,6 @@
-# Credentials
+## Environment Variables
 
 ```
-admin:test
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
 ```
