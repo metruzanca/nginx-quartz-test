@@ -28,10 +28,11 @@
         file_server {
             root /usr/share/caddy/www
         }
+
+				@chainalysis {
+						# Match emails ending with 'chainalysis.com'
+						expression `{user.email} endsWith "chainalysis.com"`
+				}
     }
 }
 
-@chainalysis {
-    # Match emails ending with 'chainalysis.com'
-    expression `{user.email} endsWith "chainalysis.com"`
-}
