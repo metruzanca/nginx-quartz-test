@@ -4,6 +4,10 @@ FROM caddy:2.7.4 AS builder
 # Install necessary build tools
 RUN apk add --no-cache git go
 
+# Set up Go path
+ENV GOPATH=/go
+ENV PATH=$GOPATH/bin:$PATH
+
 # Install xcaddy
 RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
